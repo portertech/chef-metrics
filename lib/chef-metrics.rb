@@ -5,7 +5,7 @@ class ChefMetrics < Chef::Handler
   attr_accessor :metric_scheme, :measure_time, :metrics, :action
 
   def initialize(&action)
-    @metric_scheme = "chef"
+    @metric_scheme = "chef.#{Chef::Config.node_name}"
     @measure_time = Time.now.to_i
     @metrics = Hash.new
     @action = action
