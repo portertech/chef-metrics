@@ -2,13 +2,13 @@ require "rubygems"
 require "chef/handler"
 
 class ChefMetrics < Chef::Handler
-  attr_accessor :action, :metric_scheme, :measure_time, :metrics
+  attr_accessor :metric_scheme, :measure_time, :metrics, :action
 
   def initialize(&action)
-    @action = action
     @metric_scheme = "chef"
     @measure_time = Time.now.to_i
     @metrics = Hash.new
+    @action = action
   end
 
   def graphite_formatted
@@ -31,7 +31,7 @@ class ChefMetrics < Chef::Handler
       @metrics[:fail] = 1
     end
     if @action
-      @action.call
+      self.instance_eval(&@action)
     else
       Chef::Log.info("Chef Metrics report handler was not provided an action")
     end
