@@ -23,6 +23,9 @@ Append the following to your Chef client configs, usually at `/etc/chef/client.r
     report_handlers << metric_handler
     exception_handlers << metric_handler
 
+Alternatively, you can use the LWRP (available @
+http://community.opscode.com/cookbooks/chef_handler)
+
 ## Examples
 
 The following examples are "action" blocks:
