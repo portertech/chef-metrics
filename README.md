@@ -2,8 +2,9 @@
 
 Chef Metrics is an OpsCode Chef report/exception handler for sending
 Chef metrics to one or more endpoints. Metrics are gathered using
-`run_status` and `run_state[:metrics]` (optional). The method of
-metric delivery to the endpoint/s of choice is left up to the user.
+`run_status` and `node.run_state[:metrics]` (optional). The method of
+metric delivery to the endpoint/s of choice is left up to the
+user. You can't manage what you don't measure.
 
 ## Installation
 
