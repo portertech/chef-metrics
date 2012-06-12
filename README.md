@@ -1,4 +1,5 @@
-# ChefMetrics
+# Chef Metrics
+
 
 TODO: Write a gem description
 
@@ -8,7 +9,16 @@ TODO: Write installation instructions here
 
 ## Usage
 
-TODO: Write usage instructions here
+Append the following to your Chef client configs, usually at =/etc/chef/client.rb=
+
+    require "chef-metrics"
+
+    metric_handler = ChefMetrics.new do
+      # see examples below
+    end
+
+    report_handlers << metric_handler
+    exception_handlers << metric_handler
 
 ## Contributing
 
