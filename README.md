@@ -33,7 +33,11 @@ The following examples are "action" blocks:
 
 ### Graphite
 
-TODO: Write a Graphite example
+    require 'socket'
+
+    socket = TCPSocket.new(GRAPHITE_HOST, GRAPHITE_PORT)
+    socket.write(graphite_formatted)
+    socket.close
 
 ### Sensu
 
