@@ -9,7 +9,7 @@ TODO: Write installation instructions here
 
 ## Usage
 
-Append the following to your Chef client configs, usually at =/etc/chef/client.rb=
+Append the following to your Chef client configs, usually at `/etc/chef/client.rb`
 
     require "chef-metrics"
 
