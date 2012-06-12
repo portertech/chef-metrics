@@ -2,13 +2,20 @@ require "rubygems"
 require "chef/handler"
 
 class ChefMetrics < Chef::Handler
-  attr_accessor :metric_scheme, :measure_time, :metrics, :action
+  attr_accessor :metric_scheme, :measure_time, :metrics, :use_run_state, :action
 
   def initialize(&action)
     @metric_scheme = "chef.#{Chef::Config.node_name}"
     @measure_time = Time.now.to_i
     @metrics = Hash.new
+    @use_run_state = true
     @action = action
+  end
+
+  def run_state_metrics!
+    if node.has_key?(:run_state) && node.run_state[:metrics].is_a?(Hash)
+      @metrics.merge!(node.run_state[:metrics])
+    end
   end
 
   def graphite_formatted
@@ -29,6 +36,9 @@ class ChefMetrics < Chef::Handler
     else
       @metrics[:success] = 0
       @metrics[:fail] = 1
+    end
+    if @use_run_state
+      run_state_metrics!
     end
     if @action
       self.instance_eval(&@action)
