@@ -31,6 +31,8 @@ The following examples are "action" blocks:
       # action block
     end
 
+Note: I recommend adding logging, timeouts, and error handling to the following.
+
 ### Graphite
 
     require 'socket'
@@ -41,7 +43,18 @@ The following examples are "action" blocks:
 
 ### Sensu
 
-TODO: Write a Sensu example
+    require 'socket'
+
+    sensu_result = {
+      :name => "chef_report",
+      :type => "metric",
+      :handler => "metrics",
+      :output => graphite_formatted
+    }
+
+    socket = TCPSocket.open('127.0.0.1', 3030)
+    socket.write(sensu_result.to_json)
+    socket.close
 
 ## Contributing
 
