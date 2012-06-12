@@ -1,11 +1,12 @@
 # Chef Metrics
 
-
-TODO: Write a gem description
+Chef Metrics is an OpsCode Chef report/exception handler for sending
+Chef metrics to one or more endpoints. Metrics are gathered using
+`run_status` and optionally `run_state[:metrics]`.
 
 ## Installation
 
-TODO: Write installation instructions here
+    gem install chef-metrics
 
 ## Usage
 
@@ -19,6 +20,22 @@ Append the following to your Chef client configs, usually at `/etc/chef/client.r
 
     report_handlers << metric_handler
     exception_handlers << metric_handler
+
+## Examples
+
+The following examples are "action" blocks:
+
+    metric_handler = ChefMetrics.new do
+      # action block
+    end
+
+### Graphite
+
+TODO: Write a Graphite example
+
+### Sensu
+
+TODO: Write a Sensu example
 
 ## Contributing
 
