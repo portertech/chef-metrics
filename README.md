@@ -56,6 +56,22 @@ Note: I recommend adding logging, timeouts, and error handling to the following.
     socket.write(sensu_result.to_json)
     socket.close
 
+### More
+
+    puts metrics
+    # {:updated_resources=>12, :all_resources=>236, :elapsed_time=>22, :success=>1, :fail=>0}
+
+    puts graphite_formatted
+    # chef.i-424242.updated_resources 12
+    # chef.i-424242.all_resources 236
+    # ...
+
+    self.metric_scheme = "#{node.environment}.chef.#{node.name.gsub(".", "_")}"
+    puts graphite_formatted
+    # production.chef.i-424242.updated_resources 12
+    # production.chef.i-424242.all_resources 236
+    # ...
+
 ## Contributing
 
 1. Fork it
