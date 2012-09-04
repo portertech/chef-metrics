@@ -13,7 +13,7 @@ class ChefMetrics < Chef::Handler
   end
 
   def run_state_metrics!
-    if node.has_key?(:run_state) && node.run_state[:metrics].is_a?(Hash)
+    if node.run_state[:metrics].is_a?(Hash)
       @metrics.merge!(node.run_state[:metrics])
     end
   end
