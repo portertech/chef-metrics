@@ -27,9 +27,11 @@ class ChefMetrics < Chef::Handler
 
   def report
     @measure_time = Time.now.to_i
-    @metrics[:updated_resources] = run_status.updated_resources.length
-    @metrics[:all_resources] = run_status.all_resources.length
-    @metrics[:elapsed_time] = run_status.elapsed_time
+    unless run_status.all_resources.nil?
+      @metrics[:all_resources] = run_status.all_resources.length
+      @metrics[:updated_resources] = run_status.updated_resources.length
+      @metrics[:elapsed_time] = run_status.elapsed_time
+    end
     if run_status.success?
       @metrics[:success] = 1
       @metrics[:fail] = 0
