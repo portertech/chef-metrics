@@ -1,5 +1,3 @@
-# -*- encoding: utf-8 -*-
-
 Gem::Specification.new do |gem|
   gem.authors       = ["Sean Porter"]
   gem.email         = ["portertech@gmail.com"]
@@ -10,5 +8,5 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files`.split($\)
   gem.name          = "chef-metrics"
   gem.require_paths = ["lib"]
-  gem.version       = "0.0.4"
+  gem.version       = "0.0.5"
 end
