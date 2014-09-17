@@ -14,6 +14,7 @@ user. You can't manage what you don't measure.
 
 Append the following to your Chef client configs, usually at `/etc/chef/client.rb`
 
+```ruby
     require "chef-metrics"
 
     metric_handler = ChefMetrics.new do
@@ -22,6 +23,7 @@ Append the following to your Chef client configs, usually at `/etc/chef/client.r
 
     report_handlers << metric_handler
     exception_handlers << metric_handler
+```
 
 Alternatively, you can use the Chef cookbook
 [LWRP](http://community.opscode.com/cookbooks/chef_handler).
