@@ -4,12 +4,12 @@ require "chef/handler"
 class ChefMetrics < Chef::Handler
   attr_accessor :metric_scheme, :measure_time, :metrics, :use_run_state, :action
 
-  def initialize(&action)
+  def initialize(action=nil, &action_block)
     @metric_scheme = "chef.#{Chef::Config.node_name}"
     @measure_time = Time.now.to_i
     @metrics = Hash.new
     @use_run_state = true
-    @action = action
+    @action = action || action_block
   end
 
   def run_state_metrics!
