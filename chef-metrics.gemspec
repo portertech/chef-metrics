@@ -8,5 +8,5 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files`.split($\)
   gem.name          = "chef-metrics"
   gem.require_paths = ["lib"]
-  gem.version       = "1.0.0.alpha"
+  gem.version       = "1.0.0"
 end
