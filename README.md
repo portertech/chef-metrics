@@ -30,18 +30,21 @@ Alternatively, you can use the Chef cookbook
 
     handler_path = File.join(node["chef_handler"]["handler_path"], "chef_metrics.rb")
 
+    directory File.dirname(handler_path) do
+      recursive true
+    end
+
     file handler_path do
       content "require 'chef-metrics'"
     end
 
     action_block = Proc.new do
-      ...
+      # see examples below
     end
 
     chef_handler "ChefMetrics" do
       source handler_path
       arguments action_block
-      action :enable
     end
 
 ## Examples
