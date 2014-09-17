@@ -28,6 +28,7 @@ Append the following to your Chef client configs, usually at `/etc/chef/client.r
 Alternatively, you can use the Chef cookbook
 [LWRP](http://community.opscode.com/cookbooks/chef_handler).
 
+```ruby
     chef_gem "chef-metrics"
 
     handler_path = File.join(node["chef_handler"]["handler_path"], "chef_metrics.rb")
@@ -48,27 +49,33 @@ Alternatively, you can use the Chef cookbook
       source handler_path
       arguments action_block
     end
+```
 
 ## Examples
 
 The following examples are "action" blocks:
 
+```ruby
     metric_handler = ChefMetrics.new do
       # action block
     end
+```
 
 Note: I recommend adding logging, timeouts, and error handling to the following.
 
 ### Graphite
 
+```ruby
     require 'socket'
 
     socket = TCPSocket.new(GRAPHITE_HOST, GRAPHITE_PORT)
     socket.write(graphite_formatted)
     socket.close
+```
 
 ### Sensu
 
+```ruby
     require 'socket'
 
     sensu_result = {
@@ -81,9 +88,11 @@ Note: I recommend adding logging, timeouts, and error handling to the following.
     socket = TCPSocket.open('127.0.0.1', 3030)
     socket.write(sensu_result.to_json)
     socket.close
+```
 
 ### More
 
+```ruby
     puts metrics
     # {:updated_resources=>12, :all_resources=>236, :elapsed_time=>22, :success=>1, :fail=>0}
 
@@ -97,6 +106,7 @@ Note: I recommend adding logging, timeouts, and error handling to the following.
     # production.chef.i-424242.updated_resources 12
     # production.chef.i-424242.all_resources 236
     # ...
+```
 
 ## Contributing
 
