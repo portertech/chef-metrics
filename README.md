@@ -26,6 +26,24 @@ Append the following to your Chef client configs, usually at `/etc/chef/client.r
 Alternatively, you can use the LWRP (available @
 http://community.opscode.com/cookbooks/chef_handler)
 
+    chef_gem "chef-metrics"
+
+    handler_path = File.join(node["chef_handler"]["handler_path"], "chef_metrics.rb")
+
+    file handler_path do
+      content "require 'chef-metrics'"
+    end
+
+    action_block = Proc.new do
+      ...
+    end
+
+    chef_handler "ChefMetrics" do
+      source handler_path
+      arguments action_block
+      action :enable
+    end
+
 ## Examples
 
 The following examples are "action" blocks:
